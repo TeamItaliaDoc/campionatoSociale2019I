@@ -6,6 +6,7 @@ var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", 
 var elimiati = [];
 var posizione = {"N": 0, "pari" : 0,"oldPunti" : -1, "oldVinte" : 0}
 var fineTorneo = new Date("2019-07-01"); 
+//var fineTorneo = new Date("2018-11-14"); 
 
 CAMPIONATO = {
     gironi: {},
@@ -73,6 +74,8 @@ CAMPIONATO = {
 
     // ???????' se si aggiungo giocatori per errore ban aggiungere campi partiteTotali e partiteTerminate    
 
+    today = new Date();
+    console.log('Inizio elaborazione: ' + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds()) ;  //?????????
         //Aggiorno eloDate
     for (var username in CAMPIONATO.giocatori) {
         CAMPIONATO.giocatori[username].eloDate = new Date("2018-01-01");
@@ -91,10 +94,14 @@ CAMPIONATO = {
                 }
             }
         }
+        today = new Date();
+        console.log('Fine elaborazione: ' +  today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
     },
     caricaDati : function(url)
     {
-            //Leggo i dati del girone
+      //  today = new Date(); //??
+      //  console.log('Inizio caricaDati: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
+        //Leggo i dati del girone
             $.getJSON(url,function(dataGirone){
 
                 //Carico dati
@@ -166,6 +173,8 @@ CAMPIONATO = {
     },
     calcolaClassifica: function()
     {
+        today = new Date(); //??
+        console.log('Inizio calcolaClassifica: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
         var eloWhite = 0;
         var eloBlack = 0;
         var png = '';
@@ -182,25 +191,28 @@ CAMPIONATO = {
                         CAMPIONATO.creaGiocatore(username);
                     //Se non ancora presente aggiungo il girone al giocatore
                     if (CAMPIONATO.giocatori[username.toLowerCase()].gironi.indexOf(CAMPIONATO.gironi.girone[i].nome) < 0)
+                    {
                         CAMPIONATO.giocatori[username.toLowerCase()].gironi += '<a href="https://www.chess.com/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/pairings/" target=”_blank”>' + CAMPIONATO.gironi.girone[i].index + '</a> - ';
+                        //E aggiorno le partite totali
+                        CAMPIONATO.giocatori[username.toLowerCase()].partiteTotali += (CAMPIONATO.gironi.girone[i].risultati.players.length - 1) * 2;
+                    }
                 }
             }
             //Per tutte le partite
             for (var iGames in CAMPIONATO.gironi.girone[i].risultati.games) {
-
                 //Aggiorno la data di inizio girone. DA FARE prima del controllo della fine     
                 if ( (! CAMPIONATO.gironi.girone[i].dataInizio) || (CAMPIONATO.gironi.girone[i].dataInizio > CAMPIONATO.gironi.girone[i].risultati.games[iGames].start_time))
                     CAMPIONATO.gironi.girone[i].dataInizio =CAMPIONATO.gironi.girone[i].risultati.games[iGames].start_time;
 
+                    console.log(CAMPIONATO.gironi.girone[i].risultati.games[iGames].white.username + ' - ' + CAMPIONATO.gironi.girone[i].risultati.games[iGames].white);      //????????          
+                    console.log(CAMPIONATO.gironi.girone[i].risultati.games[iGames].black.username + ' - ' + CAMPIONATO.gironi.girone[i].risultati.games[iGames].black);      //????????          
                 //Aggiorno totale partite dei giocatori
                 if (CAMPIONATO.gironi.girone[i].risultati.games[iGames].end_time )
                 {
                     //Partita terminata
                     var username = CAMPIONATO.gironi.girone[i].risultati.games[iGames].white.username.toLowerCase();
-                    CAMPIONATO.giocatori[username].partiteTotali ++;
                     CAMPIONATO.giocatori[username].partiteTerminate ++;
                     username = CAMPIONATO.gironi.girone[i].risultati.games[iGames].black.username.toLowerCase();
-                    CAMPIONATO.giocatori[username].partiteTotali ++;
                     CAMPIONATO.giocatori[username].partiteTerminate ++;
                 } else {
                     //Partita in corso
@@ -208,10 +220,8 @@ CAMPIONATO = {
                     //  lo username è la parte finale
                     var username = CAMPIONATO.gironi.girone[i].risultati.games[iGames].white;
                     username = username.substr(33, username.length-33).toLowerCase();
-                    CAMPIONATO.giocatori[username].partiteTotali ++;
                     username = CAMPIONATO.gironi.girone[i].risultati.games[iGames].black;
                     username = username.substr(33, username.length-33).toLowerCase();
-                    CAMPIONATO.giocatori[username].partiteTotali ++;
                 }
 
                 //Se non definita end_time la partita non è finita
@@ -251,6 +261,7 @@ CAMPIONATO = {
                     mosseOk = false;
                 CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].black, eloBlack, mosseOk, end_time, eloWhite);
             }
+
         }
 
         //Ricerco avatar
@@ -259,6 +270,8 @@ CAMPIONATO = {
     },
     getAvatar : function()
     {
+        today = new Date(); //??
+        console.log('Inizio getAvatar: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
         //Cerco il primo giocatore di cui non so ancora l'avatar
         //  Potrebbe essere andata in erore l'api di ricerca profilo
         for (var username in CAMPIONATO.giocatori) {
@@ -306,6 +319,8 @@ CAMPIONATO = {
     },
     getElo : function()
     {
+        today = new Date(); //??
+        console.log('Inizio getElo: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
         //Se un giocatore è presente solo in gironi che non riesco a caricare imposto elo attuale
         // NB NB Devo farlo uno alla volta perchè la funzione non restituisce lo username
         for (var username in CAMPIONATO.giocatori) {
@@ -433,6 +448,8 @@ CAMPIONATO = {
     },
     scriviTabelle: function()
     {
+        today = new Date(); //??
+        console.log('Inizio scriviTabelle: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
         //Calcola classifica per fascie
         while (CAMPIONATO.calcolaClassificaU1300());
         posizione.N = 0;
@@ -492,8 +509,9 @@ CAMPIONATO = {
             CAMPIONATO.gironi.girone[i].descrizione + '</a></td><td class="gironi-col">' + dataInizio + '</td> <td class="gironi-col">' + dataFine + '</td> ' +
             '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].partiteTerminate + ' / 30</td> </tr>');
         }
-    }
-    ,
+        today = new Date(); //??
+        console.log('fine  scrivitabelle: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
+    },
     calcolaClassificaU1300: function()
     {
         //Cerco giocatore con punteggio più alto
