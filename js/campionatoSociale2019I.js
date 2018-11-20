@@ -181,8 +181,7 @@ CAMPIONATO = {
         //Per tutti i gironi
         for (var i in CAMPIONATO.gironi.girone) {
             //Aggiorno partite totali del girone
-            var partiteGirone = (CAMPIONATO.gironi.girone[i].risultati.players.length - 1) * 2;
-            CAMPIONATO.gironi.girone[i].partiteGirone = partiteGirone;
+            CAMPIONATO.gironi.girone[i].partiteGirone = (CAMPIONATO.gironi.girone[i].risultati.players.length * CAMPIONATO.gironi.girone[i].risultati.players.length) - CAMPIONATO.gironi.girone[i].risultati.players.length;
             //Aggiorno i gironi del giocatori
             for (var iPlayer in CAMPIONATO.gironi.girone[i].risultati.players) {
                 var username = CAMPIONATO.gironi.girone[i].risultati.players[iPlayer].username;
@@ -196,7 +195,7 @@ CAMPIONATO = {
                     {
                         CAMPIONATO.giocatori[username.toLowerCase()].gironi += '<a href="https://www.chess.com/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/pairings/" target=”_blank”>' + CAMPIONATO.gironi.girone[i].index + '</a> - ';
                         //E aggiorno le partite totali
-                        CAMPIONATO.giocatori[username.toLowerCase()].partiteTotali += partiteGirone;
+                        CAMPIONATO.giocatori[username.toLowerCase()].partiteTotali += (CAMPIONATO.gironi.girone[i].risultati.players.length - 1) * 2;
                     }
                 }
             }
