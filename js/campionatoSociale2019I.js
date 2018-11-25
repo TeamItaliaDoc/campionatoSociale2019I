@@ -32,10 +32,10 @@ CAMPIONATO = {
         stgironi += ',{"index": "12", "nome": "csp-inverno-2018-2019-girone-12", "descrizione" : "12", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "13", "nome": "csp-inverno-2018-2019-girone-13", "descrizione" : "13", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "14", "nome": "csp-inverno-2018-2019-girone-14", "descrizione" : "14", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
-       /* stgironi += ',{"index": "15", "nome": "csp-inverno-2018-2019-girone-15", "descrizione" : "15", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "15", "nome": "csp-inverno-2018-2019-girone-15", "descrizione" : "15", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "16", "nome": "csp-inverno-2018-2019-girone-16", "descrizione" : "16", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "17", "nome": "csp-inverno-2018-2019-girone-17", "descrizione" : "17", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
-        stgironi += ',{"index": "18", "nome": "csp-inverno-2018-2019-girone-18", "descrizione" : "18", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
+       /* stgironi += ',{"index": "18", "nome": "csp-inverno-2018-2019-girone-18", "descrizione" : "18", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "19", "nome": "csp-inverno-2018-2019-girone-19", "descrizione" : "19","partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "20", "nome": "csp-inverno-2018-2019-girone-20", "descrizione" : "20", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "21", "nome": "csp-inverno-2018-2019-girone-21", "descrizione" : "21", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
@@ -180,6 +180,10 @@ CAMPIONATO = {
         var png = '';
         //Per tutti i gironi
         for (var i in CAMPIONATO.gironi.girone) {
+            //Se il girone non è iniziato continuo
+            if (! CAMPIONATO.gironi.girone[i].avviato)
+                continue;
+    
             //Aggiorno partite totali del girone
             CAMPIONATO.gironi.girone[i].partiteGirone = (CAMPIONATO.gironi.girone[i].risultati.players.length * CAMPIONATO.gironi.girone[i].risultati.players.length) - CAMPIONATO.gironi.girone[i].risultati.players.length;
             //Aggiorno i gironi del giocatori
