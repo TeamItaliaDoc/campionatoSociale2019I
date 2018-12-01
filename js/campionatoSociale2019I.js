@@ -35,7 +35,7 @@ CAMPIONATO = {
         stgironi += ',{"index": "15", "nome": "csp-inverno-2018-2019-girone-15", "descrizione" : "15", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "16", "nome": "csp-inverno-2018-2019-girone-16", "descrizione" : "16", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "17", "nome": "csp-inverno-2018-2019-girone-17", "descrizione" : "17", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
-       /* stgironi += ',{"index": "18", "nome": "csp-inverno-2018-2019-girone-18", "descrizione" : "18", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
+      /*  stgironi += ',{"index": "18", "nome": "csp-inverno-2018-2019-girone-18", "descrizione" : "18", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "19", "nome": "csp-inverno-2018-2019-girone-19", "descrizione" : "19","partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "20", "nome": "csp-inverno-2018-2019-girone-20", "descrizione" : "20", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "21", "nome": "csp-inverno-2018-2019-girone-21", "descrizione" : "21", "partiteTerminate" : "0", "partiteGirone" : 30, "avviato" : true, "daCaricare" : true,  "risultati" : "{}"}';
@@ -74,8 +74,6 @@ CAMPIONATO = {
 
     // ???????' se si aggiungo giocatori per errore ban aggiungere campi partiteTotali e partiteTerminate    
 
-    today = new Date();
-    console.log('Inizio elaborazione: ' + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds()) ;  //?????????
         //Aggiorno eloDate
     for (var username in CAMPIONATO.giocatori) {
         CAMPIONATO.giocatori[username].eloDate = new Date("2018-01-01");
@@ -94,13 +92,9 @@ CAMPIONATO = {
                 }
             }
         }
-        today = new Date();
-        console.log('Fine elaborazione: ' +  today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
     },
     caricaDati : function(url)
     {
-      //  today = new Date(); //??
-      //  console.log('Inizio caricaDati: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
         //Leggo i dati del girone
             $.getJSON(url,function(dataGirone){
 
@@ -173,8 +167,6 @@ CAMPIONATO = {
     },
     calcolaClassifica: function()
     {
-        today = new Date(); //??
-        console.log('Inizio calcolaClassifica: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
         var eloWhite = 0;
         var eloBlack = 0;
         var png = '';
@@ -209,8 +201,6 @@ CAMPIONATO = {
                 if ( (! CAMPIONATO.gironi.girone[i].dataInizio) || (CAMPIONATO.gironi.girone[i].dataInizio > CAMPIONATO.gironi.girone[i].risultati.games[iGames].start_time))
                     CAMPIONATO.gironi.girone[i].dataInizio =CAMPIONATO.gironi.girone[i].risultati.games[iGames].start_time;
 
-                    console.log(CAMPIONATO.gironi.girone[i].risultati.games[iGames].white.username + ' - ' + CAMPIONATO.gironi.girone[i].risultati.games[iGames].white);      //????????          
-                    console.log(CAMPIONATO.gironi.girone[i].risultati.games[iGames].black.username + ' - ' + CAMPIONATO.gironi.girone[i].risultati.games[iGames].black);      //????????          
                 //Aggiorno totale partite dei giocatori
                 if (CAMPIONATO.gironi.girone[i].risultati.games[iGames].end_time )
                 {
@@ -275,8 +265,6 @@ CAMPIONATO = {
     },
     getAvatar : function()
     {
-        today = new Date(); //??
-        console.log('Inizio getAvatar: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
         //Cerco il primo giocatore di cui non so ancora l'avatar
         //  Potrebbe essere andata in erore l'api di ricerca profilo
         for (var username in CAMPIONATO.giocatori) {
@@ -324,57 +312,41 @@ CAMPIONATO = {
     },
     getElo : function()
     {
-        today = new Date(); //??
-        console.log('Inizio getElo: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
-        //Se un giocatore è presente solo in gironi che non riesco a caricare imposto elo attuale
-        // NB NB Devo farlo uno alla volta perchè la funzione non restituisce lo username
+        //Cerco l'avatar per tutti i giocatori
         for (var username in CAMPIONATO.giocatori) {
-            if (CAMPIONATO.giocatori[username].elo == 0) {
-                //Cerco elo
-                getEloUsername = username;
-                $.getJSON('https://api.chess.com/pub/player/' + getEloUsername + '/stats',function(data){
-                    if (data.chess_daily)
-                        CAMPIONATO.giocatori[getEloUsername].elo = data.chess_daily.last.rating;
-                    else
-                    CAMPIONATO.giocatori[getEloUsername].elo = 1200;    
-                    //Rilancio funzione per riesiguire il controllo
-                    CAMPIONATO.getElo();    
-
-                }).error(function(jqXhr, textStatus, error) {
-                    //è andato in errore ricarico i dati
-                    CAMPIONATO.getElo();    
-                });
-                
-                //Esco ricerco un solo elo
-                return;
-            }
-        }
-        //Se non c'erano elo da ricercare scrivo la tabella
-        CAMPIONATO.scriviTabelle();
+                //Cerco avatar
+                CAMPIONATO.getEloUrl('https://api.chess.com/pub/player/' + username + '/stats');
+        }    
     },
-    getEloUrl: function(username, url)
+    getEloUrl: function(url)
     {
-        //Eseguo funzione per ricercare l'elo per i giocatori dei gironi precaricati
+        //Eseguo funzione per ricercare un avatar
         $.getJSON(url,function(data){
-            CAMPIONATO.giocatori[username].elo = data.chess_daily.last.rating;
-
-            //Se non ho caricato tuti gli elo esco
+            var username = ''
+            username = this.url.substr(33, this.url.length-39);
+            if (data.chess_daily)
+                CAMPIONATO.giocatori[username].elo = data.chess_daily.last.rating;
+            else
+                CAMPIONATO.giocatori[username].elo = 1200;    
+                
+            //Se non ho caricato tuti gli elo  esengo ancora la funzione
             for (var username in CAMPIONATO.giocatori) {
-                if (CAMPIONATO.giocatori[username].elo == 0) {
+                if (! CAMPIONATO.giocatori[username].elo) {
                     return;
                 }
             }
-            //Finito calcolo. Scrivo i risultati 
-            //   Controllo se è già partita la fase di scrittura
-            //      se arrivano contemporaneamente più caricamenti potrebbe succedere
-            if (! CAMPIONATO.scriviTabelleRun)
-            {
-                CAMPIONATO.scriviTabelleRun = true;
-                CAMPIONATO.scriviTabelle();
-            }
+
+            if (CAMPIONATO.scriviTabelleRun)
+                return;
+                
+            //Se non ci sono elo da ricercare scrivo la tabella
+            CAMPIONATO.scriviTabelleRun = true;
+            CAMPIONATO.scriviTabelle();
+
+
         }).error(function(jqXhr, textStatus, error) {
             //è andato in errore ricarico i dati
-            CAMPIONATO.getEloUrl(this.username,this.url);    
+            CAMPIONATO.getEloUrl(this.url);    
         });
 
     },
@@ -453,8 +425,6 @@ CAMPIONATO = {
     },
     scriviTabelle: function()
     {
-        today = new Date(); //??
-        console.log('Inizio scriviTabelle: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
         //Calcola classifica per fascie
         while (CAMPIONATO.calcolaClassificaU1300());
         posizione.N = 0;
@@ -514,8 +484,6 @@ CAMPIONATO = {
             CAMPIONATO.gironi.girone[i].descrizione + '</a></td><td class="gironi-col">' + dataInizio + '</td> <td class="gironi-col">' + dataFine + '</td> ' +
             '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].partiteTerminate + ' / ' + CAMPIONATO.gironi.girone[i].partiteGirone + ' </td> </tr>');
         }
-        today = new Date(); //??
-        console.log('fine  scrivitabelle: '  + today.getMinutes() + ':' + today.getSeconds() + '-' + today.getMilliseconds());  //?????????
     },
     calcolaClassificaU1300: function()
     {
