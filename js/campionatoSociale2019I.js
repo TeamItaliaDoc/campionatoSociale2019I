@@ -556,7 +556,7 @@ CAMPIONATO = {
             //Se ho terminato tutte le partite scrivo in verde
             var colore = "";
             var dataFine = "";
-            if (CAMPIONATO.gironi.girone[i].partiteTerminate == 30)
+            if (CAMPIONATO.gironi.girone[i].partiteTerminate == CAMPIONATO.gironi.girone[i].partiteGirone)
             {
                 colore = 'style="color:green!important"';
                 var end_time
