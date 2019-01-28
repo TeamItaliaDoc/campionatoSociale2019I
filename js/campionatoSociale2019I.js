@@ -91,11 +91,13 @@ CAMPIONATO = {
     CAMPIONATO.gironi.girone[21-1].dataFine = "19/01/2019";   
     CAMPIONATO.gironi.girone[21-1].partiteTerminate = 20;   
     CAMPIONATO.gironi.girone[21-1].partiteGirone = 20;   
+    CAMPIONATO.gironi.girone[21-1].numGiocatori = 5;
     CAMPIONATO.gironi.girone[21-1].giocatori = ["fungiat","dag_stinner","tulpicanistan","kmoreteam","thejoker2000"]; 
     CAMPIONATO.gironi.girone[34-1].dataInizio = new Date('2018-12-31');   
     CAMPIONATO.gironi.girone[34-1].dataFine = "";   
     CAMPIONATO.gironi.girone[34-1].partiteTerminate = 24;   
     CAMPIONATO.gironi.girone[34-1].partiteGirone = 30;   
+    CAMPIONATO.gironi.girone[34-1].numGiocatori = 6;
     CAMPIONATO.gironi.girone[34-1].giocatori = ["fungiat","cavaliereyedi","themoonlightknight","big-fishy","giampiero111","alderekk"]; 
 
 //Girone 21
@@ -229,6 +231,8 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
     
            //Aggiorno partite totali del girone
             CAMPIONATO.gironi.girone[i].partiteGirone = (CAMPIONATO.gironi.girone[i].risultati.players.length * CAMPIONATO.gironi.girone[i].risultati.players.length) - CAMPIONATO.gironi.girone[i].risultati.players.length;
+            //Aggiorno N. giocatori per girone
+            CAMPIONATO.gironi.girone[i].numGiocatori = CAMPIONATO.gironi.girone[i].risultati.players.length;
             //Aggiorno i gironi del giocatori
             for (var iPlayer in CAMPIONATO.gironi.girone[i].risultati.players) {
                 var username = CAMPIONATO.gironi.girone[i].risultati.players[iPlayer].username;
@@ -624,7 +628,8 @@ username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
     
             $("#gironi").append('<tr  ' + colore + ' class="gironi-giocatori"> <td class="gironi-col1"><a class="username" href="https://www.chess.com/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/pairings/" target=”_blank”> #' +
             CAMPIONATO.gironi.girone[i].descrizione + '</a></td><td class="gironi-col">' + dataInizio + '</td> <td class="gironi-col">' + dataFine + '</td> ' +
-            '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].partiteTerminate + ' / ' + CAMPIONATO.gironi.girone[i].partiteGirone + ' </td> </tr>');
+            '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].partiteTerminate + ' / ' + CAMPIONATO.gironi.girone[i].partiteGirone + ' </td> ' +
+            '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].numGiocatori + ' </td> </tr>');
         }
 
         //Scrivo i dati dei giocatori totali nelle intestazioni
