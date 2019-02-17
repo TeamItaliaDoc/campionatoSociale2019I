@@ -78,11 +78,11 @@ CAMPIONATO = {
         stgironi += ',{"index": "56", "nome": "csp-inverno-2018-2019-girone-56", "descrizione" : "56", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "57", "nome": "csp-inverno-2018-2019-girone-57", "descrizione" : "57", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "58", "nome": "csp-inverno-2018-2019-girone-58", "descrizione" : "58", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
-        stgironi += ',{"index": "59", "nome": "csp-inverno-2018-2019-girone-59", "descrizione" : "59", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "59", "nome": "csp-inverno-2018-2019-girone-59-1", "descrizione" : "59", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "60", "nome": "csp-inverno-2018-2019-girone-60", "descrizione" : "60", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
-/*        stgironi += ',{"index": "61", "nome": "csp-inverno-2018-2019-girone-61", "descrizione" : "61", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "61", "nome": "csp-inverno-2018-2019-girone-61", "descrizione" : "61", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "62", "nome": "csp-inverno-2018-2019-girone-62", "descrizione" : "62", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
-*/        stgironi += ']}';
+        stgironi += ']}';
 
         CAMPIONATO.gironi = JSON.parse(stgironi);   
 
