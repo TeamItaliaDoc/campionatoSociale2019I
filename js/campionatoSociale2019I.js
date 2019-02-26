@@ -102,14 +102,14 @@ CAMPIONATO = {
     CAMPIONATO.gironi.girone[21-1].giocatori = ["fungiat","dag_stinner","tulpicanistan","kmoreteam","thejoker2000"]; 
     CAMPIONATO.gironi.girone[34-1].dataInizio = new Date('2018-12-31');   
     CAMPIONATO.gironi.girone[34-1].dataFine = "";   
-    CAMPIONATO.gironi.girone[34-1].partiteTerminate = 26;   
+    CAMPIONATO.gironi.girone[34-1].partiteTerminate = 27;   
     CAMPIONATO.gironi.girone[34-1].partiteGirone = 30;   
     CAMPIONATO.gironi.girone[34-1].numGiocatori = 6;
     CAMPIONATO.gironi.girone[34-1].giocatori = ["fungiat","cavaliereyedi","themoonlightknight","big-fishy","giampiero111","alderekk"]; 
     CAMPIONATO.gironi.girone[57-1].dataInizio = new Date('2019-02-21');   
     CAMPIONATO.gironi.girone[57-1].dataFine = "";   
     CAMPIONATO.gironi.girone[57-1].partiteTerminate = 26;   
-    CAMPIONATO.gironi.girone[57-1].partiteGirone = 30;   
+    CAMPIONATO.gironi.girone[57-1].partiteGirone = 42;   
     CAMPIONATO.gironi.girone[57-1].numGiocatori = 6;
     CAMPIONATO.gironi.girone[57-1].giocatori = ["fox7hem","dag_stinner","napoli67","big-fishy","alessandro08","dannyknockers","cavaliereyedi"]; 
 
@@ -132,7 +132,7 @@ username = 'giampiero111';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"
 //Girone 57
 username = 'fox7hem';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"fox7hem","displayName":"fox7hem", "id":"https://www.chess.com/member/fox7hem","avatar":"","elo":"", "punteggio":8.44, "vinte":6, "perse":2, "patte":0, "partiteTotali":12, "partiteTerminate":8,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 
-username = 'napoli67';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"napoli67","displayName":"napoli67", "id":"https://www.chess.com/member/napoli67","avatar":"","elo":"", "punteggio":6.67, "vinte":5, "perse":2, "patte":1, "partiteTotali":12, "partiteTerminate":8,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
+username = 'napoli67';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"napoli67","displayName":"napoli67", "id":"https://www.chess.com/member/napoli67","avatar":"","elo":"", "punteggio":7.80, "vinte":5, "perse":2, "patte":1, "partiteTotali":12, "partiteTerminate":8,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 username = 'alessandro08';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"alessandro08","displayName":"Alessandro08", "id":"https://www.chess.com/member/alessandro08","avatar":"","elo":"", "punteggio":3.19, "vinte":3, "perse":5, "patte":0, "partiteTotali":12, "partiteTerminate":8,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 username = 'dannyknockers';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"dannyknockers","displayName":"DannyKnockers", "id":"https://www.chess.com/member/dannyknockers","avatar":"","elo":"", "punteggio":4.0, "vinte":2, "perse":5, "patte":1, "partiteTotali":12, "partiteTerminate":8,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 
