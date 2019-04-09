@@ -3,7 +3,7 @@
 //METTERE SEMPRE MINUSCOLO
 //METTERE SEMPRE MINUSCOLO
 var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
-var elimiati = [];
+var elimiati = ['fungiat'];
 var posizione = {"N": 0, "pari" : 0,"oldPunti" : -1, "oldVinte" : 0}
 var fineTorneo = new Date("2019-07-01"); 
 //var fineTorneo = new Date("2018-11-14"); 
@@ -20,7 +20,7 @@ CAMPIONATO = {
     {
         //Valorori avviato. 0: valore iniziale, girone avviato - 1: girone non iniziato da controllare players - 2: girone non iniziato players caricati 
         stgironi = '{"girone": [';
-        stgironi += '{"index": "1", "nome": "csp-inverno-2018-2019-girone-1", "descrizione" : "1", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true, "risultati" : "{}"}';
+       stgironi += '{"index": "1", "nome": "csp-inverno-2018-2019-girone-1", "descrizione" : "1", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true, "risultati" : "{}"}';
         stgironi += ',{"index": "2", "nome": "csp-inverno-2018-2019-girone-2", "descrizione" : "2", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "3", "nome": "csp-inverno-2018-2019-girone-3", "descrizione" : "3",  "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "4", "nome": "csp-inverno-2018-2019-girone-4", "descrizione" : "4",  "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
@@ -106,7 +106,7 @@ CAMPIONATO = {
     //Aggiorno dati per gironi che non si caricano 
     CAMPIONATO.gironi.girone[14-1].dataInizio = new Date('2018-11-22');   
     CAMPIONATO.gironi.girone[14-1].dataFine = "";   
-    CAMPIONATO.gironi.girone[14-1].partiteTerminate = 40;   
+    CAMPIONATO.gironi.girone[14-1].partiteTerminate = 41;   
     CAMPIONATO.gironi.girone[14-1].partiteGirone = 42;   
     CAMPIONATO.gironi.girone[14-1].numGiocatori = 6;
     CAMPIONATO.gironi.girone[14-1].giocatori = ["fungiat","riccardocioli","il_king","silverblack","linchetto","paulbuhl","dag_stinner"]; 
@@ -152,7 +152,7 @@ username = 'fox7hem';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"usern
 username = 'napoli67';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"napoli67","displayName":"napoli67", "id":"https://www.chess.com/member/napoli67","avatar":"","elo":"", "punteggio":8.91, "vinte":5, "perse":4, "patte":2, "partiteTotali":12, "partiteTerminate":11,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 username = 'alessandro08';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"alessandro08","displayName":"Alessandro08", "id":"https://www.chess.com/member/alessandro08","avatar":"","elo":"", "punteggio":6.85, "vinte":6, "perse":6, "patte":0, "partiteTotali":12, "partiteTerminate":12,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 username = 'dannyknockers';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"dannyknockers","displayName":"DannyKnockers", "id":"https://www.chess.com/member/dannyknockers","avatar":"","elo":"", "punteggio":4.31, "vinte":2, "perse":9, "patte":1, "partiteTotali":12, "partiteTerminate":12,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
-username = 'cavaliereyedi';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"cavaliereyedi","displayName":"cavaliereyedi", "id":"https://www.chess.com/member/cavaliereyedi","avatar":"","elo":"", "punteggio":2.0, "vinte":1, "perse":10, "patte":0, "partiteTotali":12, "partiteTerminate":11,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
+username = 'cavaliereyedi';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"cavaliereyedi","displayName":"cavaliereyedi", "id":"https://www.chess.com/member/cavaliereyedi","avatar":"","elo":"", "punteggio":2.0, "vinte":1, "perse":11, "patte":0, "partiteTotali":12, "partiteTerminate":12,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 username = 'big-fishy';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"big-fishy","displayName":"Big-Fishy", "id":"https://www.chess.com/member/big-fishy","avatar":"","elo":"", "punteggio":3.75, "vinte":0, "perse":0, "patte":0, "partiteTotali":12, "partiteTerminate":0,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 
 
@@ -167,7 +167,7 @@ username = 'a550';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username
 
 //Più gironi
 username = 'fungiat';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"fungiat","displayName":"Fungiat", "id":"https://www.chess.com/member/fungiat","avatar":"","elo":"", "punteggio":25.53, "vinte":25, "perse":3, "patte":1, "partiteTotali":30, "partiteTerminate":30,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
-username = 'cavaliereyedi';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"cavaliereyedi","displayName":"cavaliereyedi", "id":"https://www.chess.com/member/cavaliereyedi","avatar":"","elo":"", "punteggio":9.28, "vinte":5, "perse":16, "patte":0, "partiteTotali":22, "partiteTerminate":21,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
+username = 'cavaliereyedi';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"cavaliereyedi","displayName":"cavaliereyedi", "id":"https://www.chess.com/member/cavaliereyedi","avatar":"","elo":"", "punteggio":9.28, "vinte":5, "perse":17, "patte":0, "partiteTotali":22, "partiteTerminate":22,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 username = 'big-fishy';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"big-fishy","displayName":"Big-Fishy", "id":"https://www.chess.com/member/big-fishy","avatar":"","elo":"", "punteggio":9.33, "vinte":3, "perse":5, "patte":1, "partiteTotali":22, "partiteTerminate":9,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"dag_stinner","displayName":"Dag_Stinner", "id":"https://www.chess.com/member/dag_stinner","avatar":"","elo":"", "punteggio":19.2, "vinte":17, "perse":2, "patte":1, "partiteTotali":20, "partiteTerminate":20,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 
