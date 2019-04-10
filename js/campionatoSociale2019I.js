@@ -70,7 +70,8 @@ CAMPIONATO = {
         stgironi += ',{"index": "48", "nome": "csp-inverno-2018-2019-girone-48", "descrizione" : "48", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true, "risultati" : "{}"}';
         stgironi += ',{"index": "49", "nome": "csp-inverno-2018-2019-girone-49", "descrizione" : "49", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "50", "nome": "csp-inverno-2018-2019-girone-50", "descrizione" : "50", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
-       // stgironi += ',{"index": "51", "nome": "csp-inverno-2018-2019-girone-51", "descrizione" : "51", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+//Anche se non esiste lo devo lasciare altrimenti gli indici non corrispondono e i gironi non avviati risultano sbagliati.       
+        stgironi += ',{"index": "51", "nome": "csp-inverno-2018-2019-girone-51", "descrizione" : "51", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "52", "nome": "csp-inverno-2018-2019-girone-52", "descrizione" : "52", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "53", "nome": "csp-inverno-2018-2019-girone-53", "descrizione" : "53", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "54", "nome": "csp-inverno-2018-2019-girone-54", "descrizione" : "54", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
