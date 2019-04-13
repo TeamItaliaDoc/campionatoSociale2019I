@@ -98,9 +98,19 @@ CAMPIONATO = {
         stgironi += ',{"index": "75", "nome": "csp-inverno-2018-2019-girone-75", "descrizione" : "75", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "76", "nome": "csp-inverno-2018-2019-girone-76", "descrizione" : "76", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "77", "nome": "csp-inverno-2018-2019-girone-77", "descrizione" : "77", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
-/*        stgironi += ',{"index": "78", "nome": "csp-inverno-2018-2019-girone-78", "descrizione" : "78", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "78", "nome": "csp-inverno-2018-2019-girone-78", "descrizione" : "78", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "79", "nome": "csp-inverno-2018-2019-girone-79", "descrizione" : "79", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
-*/        stgironi += ']}';
+        stgironi += ',{"index": "80", "nome": "csp-inverno-2018-2019-girone-80", "descrizione" : "80", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "81", "nome": "csp-inverno-2018-2019-girone-81", "descrizione" : "81", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "82", "nome": "csp-inverno-2018-2019-girone-82", "descrizione" : "82", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+    /*    stgironi += ',{"index": "83", "nome": "csp-inverno-2018-2019-girone-83", "descrizione" : "83", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "84", "nome": "csp-inverno-2018-2019-girone-84", "descrizione" : "84", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "85", "nome": "csp-inverno-2018-2019-girone-85", "descrizione" : "85", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "86", "nome": "csp-inverno-2018-2019-girone-86", "descrizione" : "86", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "87", "nome": "csp-inverno-2018-2019-girone-87", "descrizione" : "87", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "88", "nome": "csp-inverno-2018-2019-girone-88", "descrizione" : "88", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+        stgironi += ',{"index": "89", "nome": "csp-inverno-2018-2019-girone-89", "descrizione" : "89", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
+     */   stgironi += ']}';
 
         CAMPIONATO.gironi = JSON.parse(stgironi);   
 
@@ -370,14 +380,14 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
                 eloWhite = png.substring(0, png.indexOf('"'));
                 png = png.substring(png.indexOf('BlackElo')+10);
                 eloBlack = png.substring(0, png.indexOf('"'));
-                CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].white, eloWhite, mosseOk, end_time, CAMPIONATO.gironi.girone[i].risultati.games[iGames].black.username, eloBlack);
+                CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].white, eloWhite, mosseOk, end_time, CAMPIONATO.gironi.girone[i].risultati.games[iGames].black.username, eloBlack, CAMPIONATO.gironi.girone[i].risultati.games[iGames].black.result,  i);
                 //Aggiorno punti nero
                 png = CAMPIONATO.gironi.girone[i].risultati.games[iGames].pgn;
                 if (png.indexOf('3.') > -1)
                     mosseOk = true
                 else
                     mosseOk = false;
-                CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].black, eloBlack, mosseOk, end_time, CAMPIONATO.gironi.girone[i].risultati.games[iGames].white.username, eloWhite);
+                CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].black, eloBlack, mosseOk, end_time, CAMPIONATO.gironi.girone[i].risultati.games[iGames].white.username, eloWhite, CAMPIONATO.gironi.girone[i].risultati.games[iGames].white.result,  i);
             }
 
         }
@@ -474,11 +484,25 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
         });
 
     },
-    setPunti : function(risultato, elo, mosseOk, end_time, avversarioUsename, avversarioElo) {
+    setPunti : function(risultato, elo, mosseOk, end_time, avversarioUsename, avversarioElo, avversarioStato, index) {
         //Aggiorno display name. E' l'unico punto in cui ha le maiuscole
         if (CAMPIONATO.giocatori[risultato.username.toLowerCase()])
             CAMPIONATO.giocatori[risultato.username.toLowerCase()].displayName = risultato.username;
 
+        //  Se avversario era Fungiat dopo che è stato bannato.
+        //  Se avversario era Fungiat dopo che è stato bannato.
+        //  Se avversario era Fungiat dopo che è stato bannato.
+        //  Se avversario era Fungiat dopo che è stato bannato.
+        if (risultato.username == 'Fungiat' && risultato.result == 'timeout') {
+            return;
+        }
+        if (avversarioUsename == 'Fungiat' && avversarioStato == 'timeout') {
+            return;
+        }
+        //  Se avversario era Fungiat dopo che è stato bannato.
+        //  Se avversario era Fungiat dopo che è stato bannato.
+        //  Se avversario era Fungiat dopo che è stato bannato.
+        
         //Se eliminato esco
         if (elimiati.indexOf(risultato.username.toLowerCase()) > -1)
             return;
