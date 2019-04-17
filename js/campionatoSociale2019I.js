@@ -133,13 +133,12 @@ CAMPIONATO = {
     CAMPIONATO.gironi.girone[34-1].partiteGirone = 30;   
     CAMPIONATO.gironi.girone[34-1].numGiocatori = 6;
     CAMPIONATO.gironi.girone[34-1].giocatori = ["fungiat","cavaliereyedi","themoonlightknight","big-fishy","giampiero111","alderekk"]; 
-    //-- -2 perchè è stato cancellato il torneo 51
-    CAMPIONATO.gironi.girone[57-2].dataInizio = new Date('2019-02-21');   
-    CAMPIONATO.gironi.girone[57-2].dataFine = "";   
-    CAMPIONATO.gironi.girone[57-2].partiteTerminate = 41;   
-    CAMPIONATO.gironi.girone[57-2].partiteGirone = 42;   
-    CAMPIONATO.gironi.girone[57-2].numGiocatori = 6;
-    CAMPIONATO.gironi.girone[57-2].giocatori = ["fox7hem","dag_stinner","napoli67","big-fishy","alessandro08","dannyknockers","cavaliereyedi"]; 
+    CAMPIONATO.gironi.girone[57-1].dataInizio = new Date('2019-02-21');   
+    CAMPIONATO.gironi.girone[57-1].dataFine = "";   
+    CAMPIONATO.gironi.girone[57-1].partiteTerminate = 41;   
+    CAMPIONATO.gironi.girone[57-1].partiteGirone = 42;   
+    CAMPIONATO.gironi.girone[57-1].numGiocatori = 6;
+    CAMPIONATO.gironi.girone[57-1].giocatori = ["fox7hem","dag_stinner","napoli67","big-fishy","alessandro08","dannyknockers","cavaliereyedi"]; 
 
 //Girone 21
 
