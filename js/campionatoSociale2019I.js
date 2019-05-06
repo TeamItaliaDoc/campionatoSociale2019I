@@ -731,6 +731,9 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
             '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].numGiocatori + ' </td> </tr>');
         }
 
+        //Aggiorno le statistiche
+        CAMPIONATO.calcolaStatistiche();    
+
         //Scrivo i dati dei giocatori totali nelle intestazioni
         var totaleGiocatori = 0;
         for (var i in CAMPIONATO.giocatori) 
@@ -1111,6 +1114,95 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
                 );
             }
         }
+    },
+    calcolaStatistiche: function()
+    {
+        //calcolo il punteggio per l'ordinamento
+        var giocatore;
+
+        //Calcolo classifica 
+        for (var i in CAMPIONATO.giocatori) {
+            giocatore = CAMPIONATO.giocatori[i];
+            giocatore.nGironi = giocatore.gironi.split(' - ').length-1;
+            giocatore.statTerminate = giocatore.partiteTerminate * 100 / giocatore.partiteTotali;
+            giocatore.statVinte = giocatore.vinte * 100 / giocatore.partiteTerminate;
+            giocatore.statPatte = giocatore.patte * 100 / giocatore.partiteTerminate;
+            giocatore.statPerse = giocatore.perse * 100 / giocatore.partiteTerminate;
+            giocatore.punteggio = giocatore.nGironi * 10000 + giocatore.partiteTerminate
+            giocatore.stampato = false;
+        }
+
+        //Scrivo le statistiche
+        posizione.N = 0;
+        posizione.pari = 0;
+        while (CAMPIONATO.scriviStatistiche());
+    },
+    scriviStatistiche: function()
+    {
+        //Cerco giocatore con punteggio più alto
+        var username = "";
+        var newPunteggio = -1;
+        var giocatore;
+        
+        //Calcolo classifica vera
+        for (var i in CAMPIONATO.giocatori) {
+            giocatore = CAMPIONATO.giocatori[i];
+            if (! giocatore.stampato & ! giocatore.accountChiuso) {
+                if  (giocatore.punteggio > newPunteggio) 
+                {
+                    newPunteggio = giocatore.punteggio;
+                    username = i;
+                }
+            }
+        }
+
+        if (username == "")
+        {
+            return false;
+        }
+
+        //Controllo se sono pari
+        if (newPunteggio == posizione.oldPunti)
+        {
+
+             posizione.pari ++;
+        } else {
+
+            posizione.N += posizione.pari + 1;
+            //Azzero pari
+            posizione.pari = 0;
+        }
+
+        //La posizione potrebbe contenere delle immagini
+        var stPosizione = '#' + posizione.N;
+
+        //stampo riga    
+        $("#statistiche").append('<tr class="classifica-giocatori">' +
+            '<td class="classifica-col1">' + stPosizione + '</td>' +  
+            '<td class="classifica-col1SEP"></td>' + 
+            '<td class="classifica-col2">' +
+            '    <table><tr>' +
+            '        <td>' +
+            '        <img class="classifica-avatar" src="' + CAMPIONATO.giocatori[username].avatar + '">' +
+            '    </td>' +
+            '    <td width=7px></td>' +
+            '    <td><div>' +
+            '            <a class="username" href="' + CAMPIONATO.giocatori[username].id + '" target=”_blank”> ' + CAMPIONATO.giocatori[username].displayName + '</a>' +
+            '        </div> <div>  (' + CAMPIONATO.giocatori[username].elo + ') </div>' +
+            '        </td>' +    
+            '    </tr></table>' +
+            '</td>' +
+            '<td class="classifica-col3">' + CAMPIONATO.giocatori[username].nGironi +'</td>' +
+            '<td class="classifica-col4">' + CAMPIONATO.giocatori[username].statTerminate.toFixed(2) + ' % </td>' +
+            '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].statVinte.toFixed(2) + ' % </td>' +
+            '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].statPatte.toFixed(2) + ' % </td>' +
+            '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].statPerse.toFixed(2) + ' % </td>' +
+            '</tr>'
+            );
+
+            //Flag per non stampare più questo giocatore
+            CAMPIONATO.giocatori[username].stampato = true;
+            return true;
     },
     creaGiocatore : function(apiUsername)
     {
