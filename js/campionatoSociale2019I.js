@@ -122,19 +122,19 @@ CAMPIONATO = {
     CAMPIONATO.gironi.girone[14-1].partiteTerminate = 41;   
     CAMPIONATO.gironi.girone[14-1].partiteGirone = 42;   
     CAMPIONATO.gironi.girone[14-1].numGiocatori = 6;
-    CAMPIONATO.gironi.girone[14-1].giocatori = ["fungiat","riccardocioli","il_king","silverblack","linchetto","paulbuhl","dag_stinner"]; 
+    CAMPIONATO.gironi.girone[14-1].giocatori = ["riccardocioli","il_king","silverblack","linchetto","paulbuhl","dag_stinner"]; 
     CAMPIONATO.gironi.girone[21-1].dataInizio = new Date('2018-12-10');   
     CAMPIONATO.gironi.girone[21-1].dataFine = "19/01/2019";   
     CAMPIONATO.gironi.girone[21-1].partiteTerminate = 20;   
     CAMPIONATO.gironi.girone[21-1].partiteGirone = 20;   
     CAMPIONATO.gironi.girone[21-1].numGiocatori = 5;
-    CAMPIONATO.gironi.girone[21-1].giocatori = ["fungiat","dag_stinner","tulpicanistan","kmoreteam","thejoker2000"]; 
+    CAMPIONATO.gironi.girone[21-1].giocatori = ["dag_stinner","tulpicanistan","kmoreteam","thejoker2000"]; 
     CAMPIONATO.gironi.girone[34-1].dataInizio = new Date('2018-12-31');   
     CAMPIONATO.gironi.girone[34-1].dataFine = "29/04/2019";   
     CAMPIONATO.gironi.girone[34-1].partiteTerminate = 30;   
     CAMPIONATO.gironi.girone[34-1].partiteGirone = 30;   
     CAMPIONATO.gironi.girone[34-1].numGiocatori = 6;
-    CAMPIONATO.gironi.girone[34-1].giocatori = ["fungiat","cavaliereyedi","themoonlightknight","big-fishy","giampiero111","alderekk"]; 
+    CAMPIONATO.gironi.girone[34-1].giocatori = ["cavaliereyedi","themoonlightknight","big-fishy","giampiero111","alderekk"]; 
     CAMPIONATO.gironi.girone[57-1].dataInizio = new Date('2019-02-21');   
     CAMPIONATO.gironi.girone[57-1].dataFine = "04/05/2019";   
     CAMPIONATO.gironi.girone[57-1].partiteTerminate = 42;   
@@ -934,6 +934,13 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
             return false;
         }
 
+        //fungiat ha delle statistiche non    
+        if (username == "fungiat")
+        {
+            CAMPIONATO.giocatori[username].stampato = true;
+            return true;
+        }
+
         //Controllo se sono pari
         if ((newPunteggio == posizione.oldPunti) &
             (newVinte == posizione.oldVinte))
@@ -1156,9 +1163,17 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
             }
         }
 
+        //Se non ho trovato lo username ho finito di stampare
         if (username == "")
         {
             return false;
+        }
+
+        //fungiat ha delle statistiche non    
+        if (username == "fungiat")
+        {
+            CAMPIONATO.giocatori[username].stampato = true;
+            return true;
         }
 
         //Controllo se sono pari
