@@ -1135,7 +1135,7 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
             giocatore.statVinte = giocatore.vinte * 100 / giocatore.partiteTerminate;
             giocatore.statPatte = giocatore.patte * 100 / giocatore.partiteTerminate;
             giocatore.statPerse = giocatore.perse * 100 / giocatore.partiteTerminate;
-            giocatore.punteggio = giocatore.nGironi * 10000 + giocatore.partiteTerminate
+            giocatore.statOrdine = giocatore.nGironi * 10000 + giocatore.partiteTerminate
             giocatore.stampato = false;
         }
 
@@ -1155,9 +1155,9 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
         for (var i in CAMPIONATO.giocatori) {
             giocatore = CAMPIONATO.giocatori[i];
             if (! giocatore.stampato & ! giocatore.accountChiuso) {
-                if  (giocatore.punteggio > newPunteggio) 
+                if  (giocatore.statOrdine > newPunteggio) 
                 {
-                    newPunteggio = giocatore.punteggio;
+                    newPunteggio = giocatore.statOrdine;
                     username = i;
                 }
             }
@@ -1209,6 +1209,7 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
             '</td>' +
             '<td class="classifica-col3">' + CAMPIONATO.giocatori[username].nGironi +'</td>' +
             '<td class="classifica-col4">' + CAMPIONATO.giocatori[username].statTerminate.toFixed(2) + ' % </td>' +
+            '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].punteggio.toFixed(2) + '</td>' +
             '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].statVinte.toFixed(2) + ' % </td>' +
             '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].statPatte.toFixed(2) + ' % </td>' +
             '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].statPerse.toFixed(2) + ' % </td>' +
