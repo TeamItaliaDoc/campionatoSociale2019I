@@ -1124,7 +1124,7 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
         for (var i in CAMPIONATO.giocatori) {
             giocatore = CAMPIONATO.giocatori[i];
             giocatore.nGironi = giocatore.gironi.split(' - ').length-1;
-            giocatore.statTerminate = giocatore.partiteTerminate * 100 / giocatore.partiteTotali;
+            giocatore.statDaTerminare = 100 - (giocatore.partiteTerminate * 100 / giocatore.partiteTotali);
             giocatore.statVinte = giocatore.vinte * 100 / giocatore.partiteTerminate;
             giocatore.statPatte = giocatore.patte * 100 / giocatore.partiteTerminate;
             giocatore.statPerse = giocatore.perse * 100 / giocatore.partiteTerminate;
@@ -1193,7 +1193,7 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
             '    </tr></table>' +
             '</td>' +
             '<td class="classifica-col3">' + CAMPIONATO.giocatori[username].nGironi +'</td>' +
-            '<td class="classifica-col4">' + CAMPIONATO.giocatori[username].statTerminate.toFixed(2) + ' % </td>' +
+            '<td class="classifica-col4">' + CAMPIONATO.giocatori[username].statDaTerminare.toFixed(2) + ' % </td>' +
             '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].statVinte.toFixed(2) + ' % </td>' +
             '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].statPatte.toFixed(2) + ' % </td>' +
             '<td class="classifica-col5">' + CAMPIONATO.giocatori[username].statPerse.toFixed(2) + ' % </td>' +
