@@ -11,6 +11,7 @@ var fineTorneo = new Date("2019-07-01");
 CAMPIONATO = {
     gironi: {},
     giocatori: [],
+    gironiJS : [],
     scriviTabelleRun: false,
     calcolaClassificaRun: false,
     getEloUsername: '',
@@ -189,10 +190,26 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
     }
 
 //https://api.chess.com/pub/tournament/csp-inverno-2018-2019-girone-1/1/1
+
+//PER CONVERTIRE I JSON LETTI DA SITO:
+//   Aggiungere all'inizio: CAMPIONATO.gironiJS[1] = '
+//   Aggiungere alla fine : ';
+//   Sostituire /n con spazio
+//   Sostituire /" con spazio
+
         //Carico i dati di tuti i gironi
         for (var i in CAMPIONATO.gironi.girone) {
+
+
             if (CAMPIONATO.gironi.girone[i].daCaricare) {
-                CAMPIONATO.caricaDati('https://api.chess.com/pub/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/1/1');
+                if (CAMPIONATO.gironiJS[parseInt(i)+1] != undefined) {
+                    // Carico girone salvato
+                    CAMPIONATO.gironi.girone[i].risultati = JSON.parse(CAMPIONATO.gironiJS[parseInt(i)+1].toString());
+                    console.log('Dati salvati per girone: ' + parseInt(parseInt(i)+1))
+                } else {
+                    //Leggo dati dal sito
+                    CAMPIONATO.caricaDati('https://api.chess.com/pub/tournament/' + CAMPIONATO.gironi.girone[i].nome + '/1/1');
+                }
             } else {
                 //Non è da caricare, aggiungo il girone ai giocatori
                 for (var iGiocatore in CAMPIONATO.gironi.girone[i].giocatori) {
@@ -205,7 +222,8 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
     caricaDati : function(url)
     {
         //Leggo i dati del girone
-            $.getJSON(url,function(dataGirone){
+        console.log('Leggo dati per girone: ' + url.substring(66,68));
+        $.getJSON(url,function(dataGirone){
 
                 //Carico dati
                 for (var iGirone in CAMPIONATO.gironi.girone) {
@@ -383,10 +401,18 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
                     mosseOk = true
                 else
                     mosseOk = false;
-                png = png.substring(png.indexOf('WhiteElo')+10);
-                eloWhite = png.substring(0, png.indexOf('"'));
-                png = png.substring(png.indexOf('BlackElo')+10);
-                eloBlack = png.substring(0, png.indexOf('"'));
+                //L'elo lo trovo in modo diverso se json scaricato da sito o salvato
+                if (png.indexOf('WhiteElo "') > -1) {    
+                    png = png.substring(png.indexOf('WhiteElo')+10);
+                    eloWhite = png.substring(0, png.indexOf('"'));
+                    png = png.substring(png.indexOf('BlackElo')+10);
+                    eloBlack = png.substring(0, png.indexOf('"'));
+                } else {
+                    png = png.substring(png.indexOf('WhiteElo')+9);
+                    eloWhite = png.substring(0, png.indexOf(']'));
+                    png = png.substring(png.indexOf('BlackElo')+9);
+                    eloBlack = png.substring(0, png.indexOf(']'));
+                }
                 CAMPIONATO.setPunti(CAMPIONATO.gironi.girone[i].risultati.games[iGames].white, eloWhite, mosseOk, end_time, CAMPIONATO.gironi.girone[i].risultati.games[iGames].black.username, eloBlack, CAMPIONATO.gironi.girone[i].risultati.games[iGames].black.result,  i);
                 //Aggiorno punti nero
                 png = CAMPIONATO.gironi.girone[i].risultati.games[iGames].pgn;
@@ -692,6 +718,7 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
 
         //In ultimo scrivo giocatori eliminati
         CAMPIONATO.scriviEliminati();
+
         //Tabella gironi
         for (var i in CAMPIONATO.gironi.girone) {
             //Se il girone non è iniziato non lo stampo
