@@ -716,6 +716,10 @@ username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"u
         posizione.pari = 0;
         while (CAMPIONATO.scriviGiocatore());
 
+        //??????????????
+        //   Non stampo ultime due tabelle
+        return;
+        
         //In ultimo scrivo giocatori eliminati
         CAMPIONATO.scriviEliminati();
 
