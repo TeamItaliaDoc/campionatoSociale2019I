@@ -118,7 +118,15 @@ CAMPIONATO = {
         stgironi += ',{"index": "89", "nome": "csp-inverno-2018-2019-girone-89", "descrizione" : "89", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "90", "nome": "csp-inverno-2018-2019-girone-90", "descrizione" : "90", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
         stgironi += ',{"index": "91", "nome": "csp-inverno-2018-2019-girone-91", "descrizione" : "91", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';
-        stgironi += ']}';
+        stgironi += ',{"index": "92", "nome": "csp-inverno-2018-2019-girone-92", "descrizione" : "92", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';       
+        stgironi += ',{"index": "93", "nome": "csp-inverno-2018-2019-girone-93", "descrizione" : "93", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';       
+//stgironi += ',{"index": "94", "nome": "csp-inverno-2018-2019-girone-94", "descrizione" : "94", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';        
+//stgironi += ',{"index": "95", "nome": "csp-inverno-2018-2019-girone-95", "descrizione" : "95", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';        
+//stgironi += ',{"index": "96", "nome": "csp-inverno-2018-2019-girone-96", "descrizione" : "96", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';        
+//stgironi += ',{"index": "97", "nome": "csp-inverno-2018-2019-girone-97", "descrizione" : "97", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';        
+//stgironi += ',{"index": "98", "nome": "csp-inverno-2018-2019-girone-98", "descrizione" : "98", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';        
+//stgironi += ',{"index": "99", "nome": "csp-inverno-2018-2019-girone-99", "descrizione" : "99", "partiteTerminate" : 0, "partiteGirone" : 30, "avviato" : 0, "daCaricare" : true,  "risultati" : "{}"}';        
+stgironi += ']}';
 
         CAMPIONATO.gironi = JSON.parse(stgironi);   
 
@@ -761,10 +769,7 @@ console.log('-------------- caricaDati lancio calcola classifica --------'); //?
         //??????????????
         oraAttuale = new Date();
         var millisec = oraElaborazione.getTime() - oraAttuale.getTime();
-        console.log('------------------------------------------ Fine elaborazione: ' +  millisec);  //??????????????????
-        //??????????????
-        //   Non stampo ultime due tabelle
-        return;
+        console.log('------------------------------------------ Fine tabella giocatoir: ' +  millisec);  //??????????????????
         
         //In ultimo scrivo giocatori eliminati
         CAMPIONATO.scriviEliminati();
@@ -807,6 +812,12 @@ console.log('-------------- caricaDati lancio calcola classifica --------'); //?
             '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].partiteTerminate + ' / ' + CAMPIONATO.gironi.girone[i].partiteGirone + ' </td> ' +
             '<td class="gironi-col">' + CAMPIONATO.gironi.girone[i].numGiocatori + ' </td> </tr>');
         }
+
+        //??????????????
+        oraAttuale = new Date();
+        var millisec = oraElaborazione.getTime() - oraAttuale.getTime();
+        console.log('------------------------------------------ Fine tabella Gironi: ' + millisec);  //??????????????????
+        //??????????????
 
         //Aggiorno le statistiche
         CAMPIONATO.calcolaStatistiche();    
@@ -1205,9 +1216,21 @@ console.log('-------------- caricaDati lancio calcola classifica --------'); //?
         posizione.N = 0;
         posizione.pari = 0;
         while (CAMPIONATO.scriviStatistiche());
+
+        //??????????????
+        oraAttuale = new Date();
+        var millisec = oraElaborazione.getTime() - oraAttuale.getTime();
+        console.log('------------------------------------------ Fine  scriviStatistiche: ' + millisec);  //??????????????????
+        //??????????????
     },
     scriviStatistiche: function()
     {
+        //??????????????
+        oraAttuale = new Date();
+        var millisec = oraElaborazione.getTime() - oraAttuale.getTime();
+        console.log('------------------------------------------ Inizio  scriviStatistiche: ' + millisec);  //??????????????????
+        //??????????????
+
         //Cerco giocatore con punteggio più alto
         var username = "";
         var newPunteggio = -1;
