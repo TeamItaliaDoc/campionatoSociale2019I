@@ -3,7 +3,7 @@
 //METTERE SEMPRE MINUSCOLO
 //METTERE SEMPRE MINUSCOLO
 var giorni = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"];
-var elimiati = ['fungiat'];
+var eliminati = ['fungiat'];
 var posizione = {"N": 0, "pari" : 0,"oldPunti" : -1, "oldVinte" : 0}
 var fineTorneo = new Date("2019-07-01"); 
 //var fineTorneo = new Date("2018-11-14"); 
@@ -197,6 +197,12 @@ username = 'cavaliereyedi';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{
 username = 'big-fishy';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"big-fishy","displayName":"Big-Fishy", "id":"https://www.chess.com/member/big-fishy","avatar":"","elo":"", "punteggio":10.38, "vinte":3, "perse":5, "patte":1, "partiteTotali":22, "partiteTerminate":9,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 username = 'dag_stinner';CAMPIONATO.giocatori[username] = {}; stgiocatore = '{"username":"dag_stinner","displayName":"Dag_Stinner", "id":"https://www.chess.com/member/dag_stinner","avatar":"","elo":"", "punteggio":19.2, "vinte":17, "perse":2, "patte":1, "partiteTotali":20, "partiteTerminate":20,"gironi":"", "stampato":false, "accountChiuso":false}';CAMPIONATO.giocatori[username] = JSON.parse(stgiocatore);
 
+//Assegno elo a chi ha giocato solo un girone calcolato a mano
+CAMPIONATO.giocatori['silverblack'].elo = 1672;
+CAMPIONATO.giocatori['alessandro08'].elo = 1689;
+CAMPIONATO.giocatori['dannyknockers'].elo = 1336;
+//CAMPIONATO.giocatori['fungiat'].accountChiuso = true;
+
 //Aggiorno eloDate
     for (var username in CAMPIONATO.giocatori) {
         CAMPIONATO.giocatori[username].eloDate = new Date("2018-01-01");
@@ -332,6 +338,10 @@ console.log('-------------- caricaDati lancio calcola classifica --------'); //?
     },
     calcolaClassifica: function()
     {
+        //Imposto come account chiuso tutti gli eliminati così non li stampo.
+        for (var i in eliminati) 
+            CAMPIONATO.giocatori[eliminati[i]].accountChiuso = true;
+
         //??????????
         console.log('Inizio calcola classifica');
         oraAttuale = new Date();
@@ -354,7 +364,7 @@ console.log('-------------- caricaDati lancio calcola classifica --------'); //?
             for (var iPlayer in CAMPIONATO.gironi.girone[i].risultati.players) {
                 var username = CAMPIONATO.gironi.girone[i].risultati.players[iPlayer].username;
                 //Se non eliminato
-                if (elimiati.indexOf(username.toLowerCase()) == -1) {
+                if (eliminati.indexOf(username.toLowerCase()) == -1) {
                     //Se non ho trovato giocatore lo aggiungo
                     if (!CAMPIONATO.giocatori[username.toLowerCase()])
                         CAMPIONATO.creaGiocatore(username);
@@ -546,7 +556,7 @@ console.log('-------------- caricaDati lancio calcola classifica --------'); //?
         //  Se avversario era Fungiat dopo che è stato bannato.
         
         //Se eliminato esco
-        if (elimiati.indexOf(risultato.username.toLowerCase()) > -1)
+        if (eliminati.indexOf(risultato.username.toLowerCase()) > -1)
             return;
         //Aggiorno all'ultima partita valido (quelle terminate dopo la fine del torneo non sono valide)
         if (CAMPIONATO.giocatori[risultato.username.toLowerCase()].eloDate < end_time)
